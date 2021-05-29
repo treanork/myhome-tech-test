@@ -1,0 +1,66 @@
+<h1 class="house-title">Housing List:</h1>
+<form class="form" [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+  <div class="form-group">
+    <label for="minPrice">Min Price: </label>
+    <input id="minPrice" type="text" formControlName="minPrice" />
+  </div>
+  <div class="form-group">
+    <label for="maxPrice">Max Price: </label>
+    <input id="maxPrice" type="text" formControlName="maxPrice" />
+  </div>
+  <div class="form-group">
+    <button class="button-white" type="submit">Apply</button>
+    <button class="button-blue" (click)="sortList()">Sort</button>
+  </div>
+</form>
+<div *ngFor="let house of list">
+  <div
+    class="house-details"
+    *ngIf="house.Price > minPrice && house.Price < maxPrice"
+  >
+    <img
+      class="house-details__image"
+      src="{{ house.MainPhoto }}"
+      alt="house-image"
+      fallback="assets/fallbackImg.png"
+    />
+    <div class="house-details__content">
+      <img
+        class="house-details__content--icon"
+        src="{{ house.GroupLogoUrl }}"
+        alt="group-image"
+      />
+      <h2 class="house-details__content--price">
+        {{ house.Price | currency: "EUR" }}
+      </h2>
+      <div class="house-detail-wrapper">
+        <mat-icon class="icon" aria-hidden="false" aria-label="home-icon">home</mat-icon>
+        <h4>{{ house.DisplayAddress }}</h4>
+      </div>
+      <span> House Details:</span>
+      <div class="house-detail-wrapper">
+        <mat-icon class="icon" aria-hidden="false" aria-label="bed-icon">bed</mat-icon>
+        <span>{{ house.BedsString }}</span>
+      </div>
+      <div class="house-detail-wrapper">
+        <mat-icon class="icon" aria-hidden="false" aria-label="bath-icon">wc</mat-icon>
+        <span *ngIf="!house.BathString">No Baths</span>
+        <span>{{ house.BathString }}</span>
+      </div>
+      <div class="house-details__content--buttons">
+        <a
+          class="house-details__content--button-blue"
+          routerLink="/gallery"
+          [state]="{ data: { pictureArray: house.Photos } }"
+          >View Gallery</a
+        >
+        <a
+          class="house-details__content--button-white"
+          routerLink="/brochure"
+          [state]="{ data: { houseDetails: house } }"
+          >View Brochure</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

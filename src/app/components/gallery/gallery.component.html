@@ -1,0 +1,13 @@
+<h1 class="gallery-title">Gallery</h1>
+<div class="gallery">
+    <img
+    class="gallery__house-image"
+    [src]="pictureArray[pictureIndex]"
+    alt="house-image"
+    fallback="assets/fallbackImg.png"
+    >
+    <div class="buttons">
+        <button class="button-white" (click)="onNextClick()">Previous</button>
+        <button class="button-blue" (click)="onPrevClick()">Next</button>
+    </div>
+</div>

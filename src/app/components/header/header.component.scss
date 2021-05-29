@@ -1,0 +1,25 @@
+.header {
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+    color: #fff;
+    height: 2rem;
+    padding: 1rem;
+    background-color: #009cdb;
+    width: 100%;
+    justify-content: center;
+}
+
+.button-white {
+    background-color: #fff;
+    padding: 4px 8px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    display: flex;
+    color: #009cdb;
+    min-width: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    align-items: flex-end;
+}
